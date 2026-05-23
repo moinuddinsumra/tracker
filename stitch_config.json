@@ -1,0 +1,36 @@
+{
+    "stitch": {
+        "client": {
+            "version": "1.0.0",
+            "name": "AetherOS Web Tracker Client",
+            "environment": "local"
+        },
+        "project": {
+            "id": "15830368362532184775",
+            "title": "Login Activity Tracker",
+            "design_system_ref": "assets/1a5c248d90c343568e96885cb6a3397a",
+            "theme": "Cyber-Luxury Glass"
+        },
+        "integration": {
+            "sync": {
+                "driver": "polling",
+                "interval_ms": 5000,
+                "endpoints": {
+                    "merged_data": "/api/dashboard-data",
+                    "live_streams": "/api/login-activities",
+                    "users_registry": "/api/users"
+                }
+            },
+            "security": {
+                "auth_driver": "sanctum",
+                "csrf_header": "X-CSRF-TOKEN",
+                "request_header": "X-Requested-With",
+                "token_storage": "sessionStorage"
+            },
+            "components": {
+                "login_panel": "projects/15830368362532184775/screens/2502b1d4373c4c819450f0e7b830fbd1",
+                "dashboard_layout": "projects/15830368362532184775/screens/08747d39d37443449f0f3dca2029da51"
+            }
+        }
+    }
+}
