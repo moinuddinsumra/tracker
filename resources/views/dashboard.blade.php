@@ -192,7 +192,12 @@
                 <span class="font-label-md text-label-md text-primary text-xs uppercase font-semibold">Status: Online</span>
             </div>
             
-            <span class="font-body-md text-body-md text-on-surface-variant hidden md:block">{{ Auth::user()->email }}</span>
+            <div class="flex items-center gap-3 hidden md:flex">
+                @if(Auth::user()->avatar)
+                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded-full border border-white/10 object-cover" referrerpolicy="no-referrer">
+                @endif
+                <span class="font-body-md text-body-md text-on-surface-variant">{{ Auth::user()->email }}</span>
+            </div>
             <button onclick="document.getElementById('logout-form').submit();" class="font-label-md text-label-md btn-primary px-6 py-2.5 rounded hover:opacity-90 transition-all scale-95 active:scale-90">
                 Logout
             </button>
@@ -202,10 +207,14 @@
     <!-- SideNavBar -->
     <aside class="bg-white/3 dark:bg-white/3 backdrop-blur-2xl border-r border-white/10 shadow-xl fixed left-0 top-0 h-screen w-72 flex flex-col pt-24 pb-8 hidden md:flex z-40">
         <div class="px-6 mb-8 flex flex-col items-center border-b border-white/5 pb-6">
-            <div class="w-16 h-16 rounded-full bg-surface-container-high border border-white/20 mb-4 flex items-center justify-center neon-glow-purple">
-                <span class="material-symbols-outlined text-3xl text-secondary">admin_panel_settings</span>
-            </div>
-            <h2 class="font-headline-md text-headline-md text-on-surface">{{ Auth::user()->name }}</h2>
+            @if(Auth::user()->avatar)
+                <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="w-16 h-16 rounded-full border border-white/20 mb-4 object-cover neon-glow-purple" referrerpolicy="no-referrer">
+            @else
+                <div class="w-16 h-16 rounded-full bg-surface-container-high border border-white/20 mb-4 flex items-center justify-center neon-glow-purple">
+                    <span class="material-symbols-outlined text-3xl text-secondary">admin_panel_settings</span>
+                </div>
+            @endif
+            <h2 class="font-headline-md text-headline-md text-on-surface text-center px-2 truncate max-w-[240px]">{{ Auth::user()->name }}</h2>
             <p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1 truncate max-w-[220px]">{{ Auth::user()->email }}</p>
         </div>
         <nav class="flex-1 flex flex-col gap-2">
